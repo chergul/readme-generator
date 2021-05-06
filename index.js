@@ -5,35 +5,55 @@ const fs=require ("fs");
 inquirer.prompt([
     {
         type:"input",
-        name:"firstName",
-        message:"Enter your First Name"
+        name:"projectTitle",
+        message:"What is the title of your project?"
     },
     {
         type:"input",
-        name:"lastName",
-        message:"Enter your Last Name"
+        name:"projectDescription",
+        message:"Write a description of your project."
     },
     {
         type:"input",
-        name:"location",
-        message:"Please enter your location"
+        name:"installSec",
+        message:"Describe the steps required to install your project for the Installation section."
     },
     {
         type:"input",
-        name:"linkedin",
-        message:"Enter your LinkedIn URL"
+        name:"usageSec",
+        message:"Provide instructions and examples of your project in use for the Usage section."
+    },
+    {
+        type:"input",
+        name:"contSec",
+        message:"Provide guidelines on how other developers can contribute to your project."
+    },
+    {
+        type: 'input',
+        name:"testSec",
+        message:"Provide any tests written for your application and provide examples on how to run them."
+    },
+    {
+        type:"list",
+        name:"license",
+        message: "Choose a license for your project.",
+        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],  
     },
     {
         type:"input",
         name:"gitHub",
         message:"Enter your GitHub URL"
-    }
+    },
+
+
+
+
 ]).then(result=>{
-    console.log(result.firstName,result.lastName, result.location, result.linkedin, result.gitHub);
+        console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub);
     const info = result
     console.log(info);
 
-    const html=`<!DOCTYPE html>
+ /*   const html=`<!DOCTYPE html>
     <html>
   <head>
      <title>Portfolio</title>
@@ -64,13 +84,13 @@ inquirer.prompt([
  
   </div>
   </body>
-  </html>`;
+  </html>`*/;
  
-  fs.writeFile("index.html",html,function(error) {
+  fs.writeFile("README.md",md,function(error) {
      if (error) {
          console.log ("There is an error");
      } else {
-         console.log("Percet!");
+         console.log("Perfect!");
      }});
  
  });
