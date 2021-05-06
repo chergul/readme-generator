@@ -44,49 +44,55 @@ inquirer.prompt([
         name:"gitHub",
         message:"Enter your GitHub URL"
     },
+    {
+        type:"input",
+        name:"userName",
+        message:"Enter your GitHub username"
+    },
+    {
+        type:"input",
+        name:"email",
+        message:"Enter your e-mail"
+    },
 
 
 
 
 ]).then(result=>{
-        console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub);
+        console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email);
     const info = result
     console.log(info);
 
- /*   const html=`<!DOCTYPE html>
-    <html>
-  <head>
-     <title>Portfolio</title>
-     <link
-     rel="stylesheet"
-     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-   />
-     <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-  <div class="container">
+
+  const readMe = `
+ # ${result.projectTitle}
+[![GitHub license](https://img.shields.io/badge/license-${result.license}-important.svg)](${result.gitHub})
+  ## Description
+  ${result.projectDescription}
+  ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
+  ## Installation
+  To install the necessary dependencies, run the following command:
+  ${result.installSec}
+  ## Usage
+  ${result.usageSec}
+  ## License
+  This project is licensed under the ${result.license} license.
+  ## Contributing
+  ${result.contSec}
+  ## Tests
+  To run tests, run the following command:
+  ${result.testSec}
+  ## Questions
+  If you have any questions about this repo, you can open an issue, or contact ${result.userName} directly at ${result.email}.
+  `;
  
- 
-  <h1>Hi, my name is ${result.firstName} ${result.lastName}<h1>
-  <br>
- 
-  <h3>I currently live in ${result.location}<h3>
-  
-  <div class="card" style="width: 18rem;">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">My linkedIn profile is ${result.linkedin}</li>
-    <li class="list-group-item">Here you can find my work: ${result.gitHub}</li>
-  </ul>
- </div>
- 
-  
-  
- 
-  </div>
-  </body>
-  </html>`*/;
- 
-  fs.writeFile("README.md",md,function(error) {
+  fs.writeFile("README.md",readMe,function(error) {
      if (error) {
          console.log ("There is an error");
      } else {
