@@ -1,9 +1,10 @@
 # 09 Node.js Homework: Professional README Generator
 
-## 
+## Link for the repo
+[My homework](https://chergul.github.io/readme-generator/)
 
-
-
+## Screenshot for the application
+![Screenshot](./assets/image/screenshot.png)
 
 ## Acceptance Criteria
 
