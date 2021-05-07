@@ -2,7 +2,7 @@ const inquirer=require("inquirer");
 const fs=require ("fs");
 
 const utility=require('util');
-const generationMarkDown=require("./utils/generateMarkDown");
+const generationMarkDown=require("./utils/generateMarkdown");
 const writeFileAsync=utility.promisify(fs.writeFile);
 
 // array of questions for the user
@@ -66,12 +66,16 @@ const questions=()=>inquirer.prompt([
 
 questions()
 
+.then((result)=>writeFileAsync('README.md',generationMarkDown(result)))
+    .then(()=>console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email))    
+    .catch((malware)=>console.error(malware));
 
+/*
 .then(result=>{
         console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email);   
         const info = result;
-        ((data)=>writeFileAsync('README.md',generationMarkDown(data)));
-        console.log(info);
+        ((result)=>writeFileAsync('README.md',generationMarkDown(result)));
+        console.log(info);*/
 
 
 
@@ -81,6 +85,6 @@ questions()
          console.log ("There is an error");
      } else {
          console.log("Perfect!");
-     }});*/
+     }});
  
- });
+ });*/

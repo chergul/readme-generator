@@ -1,4 +1,4 @@
-function generateMarkdown(data) {  
+function generateMarkdown(result) {  
   let licenseLink = "";
   return `
   
@@ -24,7 +24,8 @@ function generateMarkdown(data) {
     ${result.usageSec}
 
     ## License
-    This project uses the following license: [${result.license}].
+    This project uses the following license: [${result.license}, (${licenseLink})].
+    ![License](https://img.shields.io/badge/License-${encodeURIComponent(result.license)}-blue.svg)
 
     ## Contributing
     ${result.contSec}
