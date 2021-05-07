@@ -1,8 +1,12 @@
 const inquirer=require("inquirer");
 const fs=require ("fs");
 
+const utility=require('util');
+const generationMarkDown=require("./utils/generateMarkDown");
+const writeFileAsync=utility.promisify(fs.writeFile);
 
-inquirer.prompt([
+// array of questions for the user
+const questions=()=>inquirer.prompt([
     {
         type:"input",
         name:"projectTitle",
@@ -58,46 +62,25 @@ inquirer.prompt([
 
 
 
-]).then(result=>{
-        console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email);
-    const info = result
-    console.log(info);
+])
+
+questions()
 
 
-  const readMe = `
- # ${result.projectTitle}
-[![GitHub license](https://img.shields.io/badge/license-${result.license}-important.svg)](${result.gitHub})
-  ## Description
-  ${result.projectDescription}
-  ## Table of Contents
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [License](#license)
-  * [Contributing](#contributing)
-  * [Tests](#tests)
-  * [Questions](#questions)
-  ## Installation
-  To install the necessary dependencies, run the following command:
-  ${result.installSec}
-  ## Usage
-  ${result.usageSec}
-  ## License
-  This project is licensed under the ${result.license} license.
-  ## Contributing
-  ${result.contSec}
-  ## Tests
-  To run tests, run the following command:
-  ${result.testSec}
-  ## Questions
-  If you have any questions about this repo, you can open an issue, or contact ${result.userName} directly at ${result.email}.
-  `;
+.then(result=>{
+        console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email);   
+        const info = result;
+        ((data)=>writeFileAsync('README.md',generationMarkDown(data)));
+        console.log(info);
+
+
+
  
-  fs.writeFile("README.md",readMe,function(error) {
+ /* fs.writeFile("README.md",generateMarkdown(readMe),function(error) {
      if (error) {
          console.log ("There is an error");
      } else {
          console.log("Perfect!");
-     }});
+     }});*/
  
  });
- 
