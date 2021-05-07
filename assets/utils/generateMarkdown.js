@@ -3,7 +3,7 @@ function generateMarkdown(data) {
   return `
   
   # ${result.projectTitle}
-  [![GitHub license](https://img.shields.io/badge/license-${result.license}-important.svg)](${result.gitHub})
+  (https://img.shields.io/badge/license-${result.license}-important.svg)](${result.gitHub})
 
     ## Description
     ${result.projectDescription}
