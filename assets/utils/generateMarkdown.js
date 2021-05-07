@@ -1,6 +1,7 @@
-function generateMarkdown(result) {  
-  let licenseLink = "";
-  return `
+const generateMarkdown =  (result)=>{  
+
+const readMe=  
+`
   
   # ${result.projectTitle}
   [![GitHub license](https://img.shields.io/badge/license-${result.license}-important.svg)](${result.gitHub})
@@ -24,7 +25,7 @@ function generateMarkdown(result) {
     ${result.usageSec}
 
     ## License
-    This project uses the following license: [${result.license}, (${licenseLink})].
+    This project uses the following license: [${result.license}].
     ![License](https://img.shields.io/badge/License-${encodeURIComponent(result.license)}-blue.svg)
 
     ## Contributing
@@ -36,7 +37,9 @@ function generateMarkdown(result) {
 
     ## Questions
     If you have any questions about this repo, you can open an issue, or contact ${result.userName} directly at ${result.email}.
-    `;
+    `
+    return readMe;
+
 }
 
 module.exports = generateMarkdown;

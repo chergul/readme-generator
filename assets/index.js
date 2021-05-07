@@ -68,7 +68,6 @@ questions()
 
 .then((result)=>writeFileAsync('README.md',generationMarkDown(result)))
     .then(()=>console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email))    
-    .catch((malware)=>console.error(malware));
 
 /*
 .then(result=>{
