@@ -6,7 +6,7 @@ const generationMarkDown=require("./utils/generateMarkdown");
 const writeFileAsync=utility.promisify(fs.writeFile);
 
 // array of questions for the user
-const questions=()=>inquirer.prompt([
+const questions=inquirer.prompt([
     {
         type:"input",
         name:"projectTitle",
@@ -64,26 +64,5 @@ const questions=()=>inquirer.prompt([
 
 ])
 
-questions()
-
-.then((result)=>writeFileAsync('README.md',generationMarkDown(result)))
-    .then(()=>console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email))    
-
-/*
-.then(result=>{
-        console.log(result.projectTitle,result.projectDescription,result.installSec, result.usageSec,result.constSec,result.testSec,result.license,result.gitHub,result.userName,result.email);   
-        const info = result;
-        ((result)=>writeFileAsync('README.md',generationMarkDown(result)));
-        console.log(info);*/
-
-
-
- 
- /* fs.writeFile("README.md",generateMarkdown(readMe),function(error) {
-     if (error) {
-         console.log ("There is an error");
-     } else {
-         console.log("Perfect!");
-     }});
- 
- });*/
+questions.then((result)=>writeFileAsync('README.md',generationMarkDown(result)))
+.then(()=>console.log("perfect you made it!"));
